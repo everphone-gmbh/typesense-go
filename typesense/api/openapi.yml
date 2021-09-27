@@ -1315,7 +1315,7 @@ components:
         facet_counts:
           type: array
           items:
-            type: integer
+            $ref: "#/components/schemas/SearchFacetCount"
         found:
           type: integer
           description: The number of documents found
@@ -1334,6 +1334,36 @@ components:
           description: The documents that matched the search query
           items:
             $ref: "#/components/schemas/SearchResultHit"
+    SearchFacetCount:
+      type: object
+      required:
+        - counts
+        - field_name
+        - stats
+      properties:
+        counts:
+          type: array
+          items:
+            $ref: "#/components/schemas/SearchFacetCount"
+        stats:
+          type: object
+          x-go-type: "interface{}"
+        field_name:
+          type: string
+
+    SearchFacetCountObject:
+      type: object
+      required:
+        - count
+        - highlighted
+        - Value
+      properties:
+        counts:
+          type: integer
+        highlighted:
+          type: string
+        value:
+          type: string
     SearchGroupedHit:
       type: object
       required:
